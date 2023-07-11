@@ -1,0 +1,24 @@
+<% articles.forEach(article => { %>
+                    <%= "Name: " + article.name %><br>
+                    <% subcategories.forEach(subcategory => { %>
+                        <% if (article.id == subcategory.category_id) { %>
+                            <div class="indent">
+                                <%= "\tName1: " + subcategory.name %><br>
+                            </div>
+                            <% subcategories1.forEach(subcategory1 => { %>
+                                <% if(subcategory.category_id == subcategory1.subcategory_id) { %>
+                                    <div class="indent2">
+                                        <%= "Name2: "+subcategory1.name %>
+                                    </div>
+                                    <% subcategories2.forEach(subcategory2 =>{ %>
+                                        <% if(subcategory1.subcategory_id == subcategory2.subcategory1_id) { %>
+                                            <div class="indent3">
+                                                <%= "Name3: "+subcategory2.name %>
+                                            </div>
+                                            <% }%>
+                                            <%})%>
+                                <%}%>
+                                <%})%>
+                        <% } %>
+                    <% }) %>
+        <% }) %>

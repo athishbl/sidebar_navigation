@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Drop Down Sidebar Menu | CodingLab</title>
+    <link rel="stylesheet" href="sidebar.css">
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="sidebar">
+      <ul class="menu">
+        <li><a href="#" id="menuToggle">Menu</a><i class='bx bx-chevron-right'></i></li>
+      </ul>
+    </div>
+
+    <!-- Displaying articles near the menu -->
+    <div class="articles-section" id="articlesSection">
+      <ul class="article">
+        <% articles.forEach(article => {%>
+        <li class="article-item">
+          <div class="article-toggle">
+            <a href="#"><%= article.name %><i class='bx bx-chevron-down'></i></a>
+          </div>
+          <div class="subcategory-section">
+            <ul>
+              <% subcategories.forEach(subcategory => { %>
+              <% if(article.id == subcategory.category_id) { %>
+              <li>
+                <div class="subcategory-toggle">
+                  <a href="#"><%= subcategory.name %><i class='bx bx-chevron-down'></i></a>
+                </div>
+                <div class="subcategory1-section">
+                  <ul>
+                    <% subcategories1.forEach(subcategory1 => { %>
+                    <% if(subcategory1.subcategory_id == subcategory.id) { %>
+                    <li>
+                      <div class="subcategory1-toggle">
+                        <a href="#"><%= subcategory1.name %><i class='bx bx-chevron-right'></i></a>
+                        
+                      </div>
+                      <div class="subcategory2-section">
+                        <ul>
+                          <% subcategories2.forEach(subcategory2 => { %>
+                          <% if(subcategory2.subcategory1_id == subcategory1.id) { %>
+                          <li><a href="#"><%= subcategory2.name %></a></li>
+                          <% } %>
+                          <% }) %>
+                        </ul>
+                      </div>
+                    </li>
+                    <% } %>
+                    <% }) %>
+                  </ul>
+                </div>
+              </li>
+              <% } %>
+              <% }) %>
+            </ul>
+          </div>
+        </li>
+        <% })%>
+      </ul>
+    </div>
+    <script>
+      const menuToggle = document.getElementById('menuToggle');
+      const articlesSection = document.getElementById('articlesSection');
+
+      menuToggle.addEventListener("click", function () {
+        articlesSection.classList.toggle('show');
+      });
+
+      const articleToggles = document.querySelectorAll('.article-toggle');
+      articleToggles.forEach(articleToggle => {
+        articleToggle.addEventListener("click", function () {
+          const subcategorySection = this.parentElement.querySelector('.subcategory-section');
+          subcategorySection.classList.toggle('show');
+        });
+      });
+
+      const subcategoryToggles = document.querySelectorAll('.subcategory-toggle');
+      subcategoryToggles.forEach(subcategoryToggle => {
+        subcategoryToggle.addEventListener("click", function () {
+          const subcategory1Section = this.parentElement.querySelector('.subcategory1-section');
+          subcategory1Section.classList.toggle('show');
+        });
+      });
+
+      const subcategory1Toggles = document.querySelectorAll('.subcategory1-toggle');
+      subcategory1Toggles.forEach(subcategory1Toggle => {
+        subcategory1Toggle.addEventListener("click", function () {
+          const subcategory2Section = this.parentElement.querySelector('.subcategory2-section');
+          subcategory2Section.classList.toggle('show');
+        });
+      });
+    </script>
+  </body>
+</html>

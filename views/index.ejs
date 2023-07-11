@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css-part2.css">
+    
+    <title>Document</title>
+</head>
+<body>
+    <div class="menu-bar">
+    <ul>
+        <li class="toggle-submenu"><a href="#">Menu </a>
+            <div class="sub-menu">
+                <ul>
+                    <% articles.forEach((article, articleIndex) => { %>
+                        <li class="toggle-subcategories1"><a href="#"><%=article.name %>
+                            <i class='bx bx-chevron-down'></i>
+                            </a>
+                            <div class="sub-menu1">
+                                <ul>
+                                    <% subcategories.forEach(subcategory => { %>
+                                        <% if(article.id == subcategory.category_id){ %>
+                                            <li class="toggle-subcategories2">
+                                               <a href="#"><%=subcategory.name %></a>
+                                            </li>
+                                        <%}%>
+                                    <%})%>
+                                </ul>
+                            </div>
+                        </li>
+                    <%})%>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    </div>
+    <script>
+        const toggleSubmenu = document.querySelector('.toggle-submenu');
+        const subMenuItems = document.querySelectorAll('.toggle-subcategories1');
+        
+        toggleSubmenu.addEventListener("click", function (event) {
+            this.classList.toggle('show');
+            event.stopPropagation();
+        });
+        
+        subMenuItems.forEach(function (item) {
+            item.addEventListener('click', function (event) {
+                event.stopPropagation();
+                const subMenu1 = this.querySelector('.sub-menu1');
+                subMenu1.classList.toggle('show');
+            });
+        });
+    </script>
+</body>
+</html>

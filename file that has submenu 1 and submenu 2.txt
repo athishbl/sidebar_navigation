@@ -1,0 +1,32 @@
+<div class="sub-menu1">
+                                <ul>
+                                    <% subcategories.forEach(subcategory => { %>
+                                        <% if (article.id == subcategory.category_id) { %>
+                                                <li><%=subcategory.name %>
+                                                    <div class="sub-menu">
+                                                        <ul>
+                                                            <% subcategories1.forEach(subcategory1 => { %>
+                                                                <% if(subcategory.id == subcategory1.subcategory_id) { %>
+                                                                
+                                                                        <li><%= subcategory1.name %>
+                                                                        <div class="sub-menu">
+                                                                            <ul>
+                                                                                <% subcategories2.forEach(subcategory2 => { %>
+                                                                                    <% if(subcategory1.id == subcategory2.subcategory1_id) { %>
+                                                                                        <li><%=subcategory2.name %></li>
+                                                                                        <%}%>
+                                                                                        <%})%>
+                                                                            </ul>
+                                                                        </div>
+                                                                        </li>
+                                                                        <% }%>
+                                                                        <% })%>
+                                                        </ul>
+                                                    
+                                                    
+                                                    </div>
+                                                </li>
+                                                <%}%>
+                                                <%})%>
+                                </ul>
+                            </div>
